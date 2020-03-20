@@ -5,8 +5,13 @@
   align-items: center;
 }
 
+.Toggle__Wrapper > label {
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
 .Toggle-checked {
-  color: black !important;
+  color: white !important;
 }
 
 .Toggle-track {
