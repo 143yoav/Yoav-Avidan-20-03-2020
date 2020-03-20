@@ -1,0 +1,14 @@
+.Toggle__Wrapper {
+  display: flex;
+  flex-flow: row;
+  justify-items: center;
+  align-items: center;
+}
+
+.Toggle-checked {
+  color: black !important;
+}
+
+.Toggle-track {
+  background-color: black !important;
+}
