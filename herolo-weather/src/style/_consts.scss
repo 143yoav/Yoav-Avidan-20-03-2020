@@ -1,0 +1,48 @@
+//fonts
+$fontFamily: 'Assistant';
+
+$themes: (
+  light: (
+    headerBG: #f56531,
+    borderColor: black,
+    toggleTrackColor: black,
+    textInputBorderColor: #f56531,
+    dayWeatherBorderColor: #f56531,
+    dayWeatherTextColor: black
+  ),
+  dark: (
+    headerBG: #24292e,
+    borderColor: #fffcfc,
+    toggleTrackColor: white,
+    textInputBorderColor: white,
+    dayWeatherBorderColor: white,
+    dayWeatherTextColor: white
+  )
+);
+
+/*
+ * Implementation of themes
+ */
+
+@mixin themify($themes) {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value
+          )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}

@@ -1,0 +1,17 @@
+@import '../../../style/consts';
+
+.TextSelect__Input {
+  border: 1px solid;
+  border-radius: 5px;
+  outline: none;
+  padding: 0;
+  font-family: $fontFamily;
+  box-shadow: none;
+  @include themify($themes) {
+    border-color: themed('textInputBorderColor');
+  }
+}
+
+.TextSelect__value-container {
+  padding: 0 !important;
+}

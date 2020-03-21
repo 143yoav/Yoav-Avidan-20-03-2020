@@ -1,0 +1,30 @@
+@import '../../../style/consts';
+
+.CurrentWeather__Wrapper {
+  display: grid;
+  margin-top: 5%;
+  grid-template-rows: 20% 75%;
+  grid-template-columns: 40% 40% 20%;
+  height: 100%;
+}
+
+.CurrentWeather__Value {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.CurrentWeather__Favorite {
+  grid-row: 1;
+  grid-column: 3;
+  justify-self: center;
+  align-self: center;
+}
+
+.CurrentWeather__Text {
+  grid-row: 2;
+  grid-column: 1/4;
+  justify-self: center;
+  align-self: center;
+  font-size: 6vw;
+  font-weight: 600;
+}

@@ -1,4 +1,7 @@
+@import '../../style/consts';
+
 .AppRouter__Wrapper {
   display: grid;
-  grid-template-rows: 10% 90%;
+  grid-template-rows: 10vh 90vh;
+  font-family: $fontFamily;
 }

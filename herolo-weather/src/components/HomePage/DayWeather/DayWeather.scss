@@ -1,0 +1,35 @@
+@import '../../../style/consts';
+
+.DayWeather__Wrapper {
+  height: 80%;
+  width: 8vw;
+  display: grid;
+  grid-template-rows: 30% 40% 30%;
+  border: 1px solid;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  justify-items: center;
+  align-items: center;
+  @include themify($themes) {
+    border-color: themed('dayWeatherBorderColor');
+  }
+}
+
+.DayWeather__Day {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.DayWeather__Icon {
+  height: 5vh;
+}
+
+.DayWeather__Temps {
+  font-size: 17px;
+}
+
+.DayWeather__Temps > label:nth-of-type(2) {
+  padding: 5px;
+  font-weight: bold;
+}

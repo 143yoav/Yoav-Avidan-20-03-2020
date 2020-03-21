@@ -1,4 +1,12 @@
-import { configureStore, applyMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
+import weatherReducer from '../reducers/weatherReducer';
 
-export default configureStore({ x: () => {} }, applyMiddleware(thunk));
+const reducer = {
+  weather: weatherReducer
+};
+
+export default configureStore({
+  reducer,
+  middleware: [thunk]
+});
