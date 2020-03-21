@@ -33,3 +33,22 @@ export const formatCurrentData = (data, metric = true) => {
     icon: data.WeatherIcon < 10 ? '0' + data.WeatherIcon : data.WeatherIcon
   };
 };
+
+export const formatAutocompleteData = data => {
+  if (!data) {
+    return [];
+  }
+
+  var formatted = [];
+
+  data.map(result => {
+    formatted.push({
+      key: result.Key,
+      city: result.LocalizedName,
+      country: result.Country.LocalizedName,
+      text: `${result.LocalizedName}, ${result.Country.LocalizedName}`
+    });
+  });
+
+  return formatted;
+};

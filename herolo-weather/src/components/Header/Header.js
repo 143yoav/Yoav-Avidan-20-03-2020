@@ -25,13 +25,13 @@ const Header = () => {
         <NaviLink
           to={'/'}
           value="Home"
-          isSelected={selected == '/'}
+          isSelected={window.location.pathname == '/'}
           onClick={onClick}
         />
         <NaviLink
           to={'/favorites'}
           value="Favorites"
-          isSelected={selected == '/favorites'}
+          isSelected={window.location.pathname == '/favorites'}
           onClick={onClick}
         />
       </div>

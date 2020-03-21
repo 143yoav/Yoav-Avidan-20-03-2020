@@ -2,7 +2,8 @@ import { Get } from '../utils/api';
 import config from '../config.json';
 import {
   formatCurrentData,
-  formatDaysData
+  formatDaysData,
+  formatAutocompleteData
 } from '../formatters/weatherFormmater';
 
 export const getCurrentLocation = () => {
@@ -20,13 +21,10 @@ const currentLocationSuccess = async position => {
       q: `${position.coords.latitude},${position.coords.longitude}`
     });
 
-    return {
-      type: 'SET_CURRENT',
-      city: {
-        name: result.data.AdministrativeArea.EnglishName,
-        key: result.data.Key
-      }
-    };
+    return setCurrentCity(
+      result.data.AdministrativeArea.EnglishName,
+      result.data.Key
+    );
   } catch (error) {
     //toast
     return currentLocationError();
@@ -34,10 +32,7 @@ const currentLocationSuccess = async position => {
 };
 
 const currentLocationError = () => {
-  return {
-    type: 'SET_CURRENT',
-    city: { name: config.defaultCityName, key: config.defaultCityKey }
-  };
+  return setCurrentCity(config.defaultCityName, config.defaultCityKey);
 };
 
 export const getCurrentWeather = async cityKey => {
@@ -57,3 +52,17 @@ export const getDailyWeather = async (cityKey, metric) => {
     //toast
   }
 };
+
+export const getAutocompleteSearch = async text => {
+  try {
+    const result = await Get(`${config.autocompleteURL}`, { q: text });
+    return formatAutocompleteData(result.data);
+  } catch (error) {
+    //toast
+  }
+};
+
+export const setCurrentCity = (name, key) => ({
+  type: 'SET_CURRENT',
+  city: { name, key }
+});

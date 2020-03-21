@@ -1,7 +1,0 @@
-@import '../../../style/consts';
-
-.TextInput__Input {
-  @include themify($themes) {
-    border-color: themed('textInputBorderColor') !important;
-  }
-}

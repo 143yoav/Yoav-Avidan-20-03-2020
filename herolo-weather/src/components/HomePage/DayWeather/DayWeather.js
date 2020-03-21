@@ -21,8 +21,8 @@ const DayWeather = ({ day, max, min, unit }) => {
 
 DayWeather.propTypes = {
   day: PropTypes.string,
-  max: PropTypes.string,
-  min: PropTypes.string,
+  max: PropTypes.number,
+  min: PropTypes.number,
   unit: PropTypes.string
 };
 

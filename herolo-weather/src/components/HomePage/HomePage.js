@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import TextInput from '../common/TextInput/TextInput';
+import TextSelect from '../common/TextSelect/TextSelect';
 import WeatherContainer from './WeatherContainer/WeatherContainer';
-import DaysData from '../../mocks/days.json';
-import CurrentData from '../../mocks/current.json';
 import {
   getCurrentLocation,
   getCurrentWeather,
-  getDailyWeather
+  getDailyWeather,
+  getAutocompleteSearch,
+  setCurrentCity
 } from '../../actions/weather';
 import './HomePage.scss';
 
 class HomePage extends Component {
   state = {
-    search: '',
+    searchResults: [],
     days: [],
     current: []
   };
@@ -23,26 +23,45 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
-    debugger;
+    this.fetchData(this.props.cityKey);
+  }
+
+  fetchData = key => {
     Promise.all([
-      getCurrentWeather(this.props.cityKey),
-      getDailyWeather(this.props.cityKey, this.props.isMetric)
+      getCurrentWeather(key),
+      getDailyWeather(key, this.props.isMetric)
     ]).then(result => {
       this.setState({
         current: result[0],
         days: result[1]
       });
     });
-  }
+  };
 
   onTextChanged = search => {
-    this.setState({ search });
+    if (search) {
+      getAutocompleteSearch(search).then(searchResults =>
+        this.setState({ searchResults })
+      );
+    } else {
+      this.setState({ searchResults: [] });
+    }
+  };
+
+  onCitySelect = city => {
+    this.props.setCurrentCity(city.city, city.key);
+    this.fetchData(city.key);
   };
 
   render() {
     return (
       <div className="HomePage__Wrapper">
-        <TextInput label="city" onChange={this.onTextChanged} />
+        <TextSelect
+          placeholder="city"
+          options={this.state.searchResults}
+          onChange={this.onTextChanged}
+          onSelect={this.onCitySelect}
+        />
         <WeatherContainer days={this.state.days} current={this.state.current} />
       </div>
     );
@@ -55,6 +74,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  setCurrentCity: (name, key) => dispatch(setCurrentCity(name, key)),
   getCurrentLocation: () => dispatch(getCurrentLocation())
 });
 
