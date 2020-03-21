@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import TextInput from '../common/TextInput/TextInput';
 import WeatherContainer from './WeatherContainer/WeatherContainer';
 import DaysData from '../../mocks/days.json';
@@ -7,12 +8,17 @@ import {
   formatDaysData,
   formatCurrentData
 } from '../../formatters/weatherFormmater';
+import { getCurrentLocation } from '../../actions/weather';
 import './HomePage.scss';
 
 class HomePage extends Component {
   state = {
     search: ''
   };
+
+  componentWillMount() {
+    //this.props.getCurrentLocation();
+  }
 
   onTextChanged = search => {
     this.setState({ search });
@@ -31,4 +37,12 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+const mapStateToProps = state => ({
+  weather: state.weather
+});
+
+const mapDispatchToProps = dispatch => ({
+  getCurrentLocation: () => dispatch(getCurrentLocation())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

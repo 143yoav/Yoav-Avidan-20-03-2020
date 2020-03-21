@@ -1,5 +1,5 @@
 import React from 'react';
-import Consts from '../../../utils/consts.json';
+import config from '../../../config.json';
 import PropTypes from 'prop-types';
 import './CurrentWeather.scss';
 
@@ -8,7 +8,7 @@ const CurrentWeather = ({ city, value, unit, text, icon }) => {
     <div className="CurrentWeather__Wrapper">
       <div className="CurrentWeather__Value">
         <img
-          src={`${Consts.weatherIconsPre}${icon}${Consts.weatherIconsSuf}`}
+          src={`${config.weatherIconsPre}${icon}${config.weatherIconsSuf}`}
         />
         <label>{city}</label>
         <label>
