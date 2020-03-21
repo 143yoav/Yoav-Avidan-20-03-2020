@@ -8,11 +8,20 @@ import {
 
 export const getCurrentLocation = () => {
   return dispatch => {
-    navigator.geolocation.getCurrentPosition(
-      pos => dispatch(currentLocationSuccess(pos)),
-      () => dispatch(currentLocationError())
-    );
+    getPosition()
+      .then(pos => {
+        dispatch(currentLocationSuccess(pos));
+      })
+      .catch(() => {
+        dispatch(currentLocationError());
+      });
   };
+};
+
+const getPosition = () => {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
 };
 
 const currentLocationSuccess = async position => {
@@ -65,4 +74,9 @@ export const getAutocompleteSearch = async text => {
 export const setCurrentCity = (name, key) => ({
   type: 'SET_CURRENT',
   city: { name, key }
+});
+
+export const updateFavorite = (city, key) => ({
+  type: 'UPDATE_FAVORITE',
+  fav: { city, key }
 });

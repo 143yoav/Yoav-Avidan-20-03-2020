@@ -12,7 +12,8 @@ export const formatDaysData = data => {
       day: moment(day.Date).format('ddd'),
       unit: day.Temperature.Minimum.Unit,
       min: day.Temperature.Minimum.Value,
-      max: day.Temperature.Maximum.Value
+      max: day.Temperature.Maximum.Value,
+      icon: day.Day.Icon < 10 ? '0' + day.Day.Icon : day.Day.Icon
     });
   });
 

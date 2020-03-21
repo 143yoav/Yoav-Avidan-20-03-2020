@@ -19,7 +19,7 @@ class HomePage extends Component {
   };
 
   componentWillMount() {
-    //this.props.getCurrentLocation();
+    this.props.getCurrentLocation();
   }
 
   componentDidMount() {
@@ -62,6 +62,7 @@ class HomePage extends Component {
           onChange={this.onTextChanged}
           onSelect={this.onCitySelect}
         />
+
         <WeatherContainer days={this.state.days} current={this.state.current} />
       </div>
     );
