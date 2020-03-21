@@ -3,6 +3,7 @@ import config from '../config.json';
 const weatherReducerDefaultState = {
   cityKey: config.defaultCityKey,
   cityName: config.defaultCityName,
+  isMetric: true,
   favoritesKeys: []
 };
 

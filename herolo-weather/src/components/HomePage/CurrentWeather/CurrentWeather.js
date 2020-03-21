@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import config from '../../../config.json';
 import PropTypes from 'prop-types';
 import './CurrentWeather.scss';
@@ -20,6 +21,10 @@ const CurrentWeather = ({ city, value, unit, text, icon }) => {
   );
 };
 
+const mapStateToProps = state => ({
+  city: state.weather.cityName
+});
+
 CurrentWeather.propTypes = {};
 
-export default CurrentWeather;
+export default connect(mapStateToProps)(CurrentWeather);

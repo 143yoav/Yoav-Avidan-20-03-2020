@@ -20,10 +20,10 @@ export const formatDaysData = data => {
 };
 
 export const formatCurrentData = (data, metric = true) => {
-  if (!data) {
+  if (!data[0]) {
     return {};
   }
-
+  data = data[0];
   const unit = metric ? 'Metric' : 'Imperial';
 
   return {

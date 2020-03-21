@@ -5,19 +5,34 @@ import WeatherContainer from './WeatherContainer/WeatherContainer';
 import DaysData from '../../mocks/days.json';
 import CurrentData from '../../mocks/current.json';
 import {
-  formatDaysData,
-  formatCurrentData
-} from '../../formatters/weatherFormmater';
-import { getCurrentLocation } from '../../actions/weather';
+  getCurrentLocation,
+  getCurrentWeather,
+  getDailyWeather
+} from '../../actions/weather';
 import './HomePage.scss';
 
 class HomePage extends Component {
   state = {
-    search: ''
+    search: '',
+    days: [],
+    current: []
   };
 
   componentWillMount() {
     //this.props.getCurrentLocation();
+  }
+
+  componentDidMount() {
+    debugger;
+    Promise.all([
+      getCurrentWeather(this.props.cityKey),
+      getDailyWeather(this.props.cityKey, this.props.isMetric)
+    ]).then(result => {
+      this.setState({
+        current: result[0],
+        days: result[1]
+      });
+    });
   }
 
   onTextChanged = search => {
@@ -28,17 +43,15 @@ class HomePage extends Component {
     return (
       <div className="HomePage__Wrapper">
         <TextInput label="city" onChange={this.onTextChanged} />
-        <WeatherContainer
-          days={formatDaysData(DaysData)}
-          current={formatCurrentData(CurrentData[0])}
-        />
+        <WeatherContainer days={this.state.days} current={this.state.current} />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  weather: state.weather
+  cityKey: state.weather.cityKey,
+  isMetric: state.weather.isMetric
 });
 
 const mapDispatchToProps = dispatch => ({
