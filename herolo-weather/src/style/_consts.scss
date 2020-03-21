@@ -5,12 +5,18 @@ $themes: (
   light: (
     headerBG: #f56531,
     borderColor: black,
-    toggleTrackColor: black
+    toggleTrackColor: black,
+    textInputBorderColor: #f56531,
+    dayWeatherBorderColor: #f56531,
+    dayWeatherTextColor: black
   ),
   dark: (
     headerBG: #24292e,
     borderColor: #fffcfc,
-    toggleTrackColor: white
+    toggleTrackColor: white,
+    textInputBorderColor: white,
+    dayWeatherBorderColor: white,
+    dayWeatherTextColor: white
   )
 );
 

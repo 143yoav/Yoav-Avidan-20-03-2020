@@ -1,0 +1,33 @@
+@import '../../../style/consts';
+
+.DayWeather__Wrapper {
+  height: 80%;
+  display: grid;
+  grid-template-rows: 50% 50%;
+  justify-content: center;
+  border: 1px solid;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  @include themify($themes) {
+    border-color: themed('dayWeatherBorderColor');
+  }
+}
+
+.DayWeather__Day {
+  align-self: center;
+  justify-self: center;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.DayWeather__Temps {
+  align-self: center;
+  justify-self: center;
+  font-size: 17px;
+}
+
+.DayWeather__Temps > label:nth-of-type(2) {
+  padding: 5px;
+  font-weight: bold;
+}

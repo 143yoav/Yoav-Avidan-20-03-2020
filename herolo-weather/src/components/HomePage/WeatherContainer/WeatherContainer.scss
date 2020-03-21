@@ -1,0 +1,27 @@
+@import '../../../style/consts';
+
+.WeatherContainer__Wrapper {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 65% 35%;
+  border: 1px solid;
+  border-radius: 5px;
+  @include themify($themes) {
+    border-color: themed('dayWeatherBorderColor');
+    color: themed('dayWeatherTextColor');
+  }
+}
+
+.WeatherContainer__Current {
+  grid-row: 1;
+}
+
+.WeatherContainer__Days {
+  grid-row: 2;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  justify-self: center;
+  width: 90%;
+}
