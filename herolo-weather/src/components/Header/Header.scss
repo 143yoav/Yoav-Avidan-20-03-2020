@@ -1,11 +1,15 @@
+@import '../../style/consts.scss';
+
 .Header__Wrapper {
   width: 100vw;
   height: 7vh;
   position: sticky;
-  background: #f56531;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   display: grid;
   grid-template-columns: 70% 15% 15%;
+  @include themify($themes) {
+    background: themed('headerBG');
+  }
 }
 
 .Header__Title {
@@ -17,7 +21,7 @@
   display: flex;
   align-self: center;
   text-shadow: 1px 1px 1px black;
-  font-family: 'Assistant';
+  font-family: $fontFamily;
 }
 
 .Header__Theme {
