@@ -17,7 +17,7 @@ const AppRouter = props => {
 
   return (
     <Router history={history}>
-      <div className={classNames('AppRouter__Wrapper', 'theme-light')}>
+      <div className={classNames('AppRouter__Wrapper', 'theme-dark')}>
         <Header />
         <Switch>
           <Route path="/" component={HomePage} exact />

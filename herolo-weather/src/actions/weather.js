@@ -43,10 +43,10 @@ const currentLocationError = () => {
   return setCurrentCity(config.defaultCityName, config.defaultCityKey);
 };
 
-export const getCurrentWeather = async cityKey => {
+export const getCurrentWeather = async (cityKey, isMetric) => {
   try {
     const result = await Get(`${config.currentWeatherURL}${cityKey}`);
-    return formatCurrentData(result.data);
+    return formatCurrentData(result.data, isMetric);
   } catch (error) {
     //toast
   }
@@ -78,4 +78,9 @@ export const setCurrentCity = (name, key) => ({
 export const updateFavorite = (city, key) => ({
   type: 'UPDATE_FAVORITE',
   fav: { city, key }
+});
+
+export const updateUnit = isMetric => ({
+  type: 'UPDATE_UNIT',
+  isMetric
 });

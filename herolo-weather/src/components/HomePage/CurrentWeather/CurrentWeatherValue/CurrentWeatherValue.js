@@ -6,7 +6,11 @@ import './CurrentWeatherValue.scss';
 const CurrentWeatherValue = ({ icon, city, value, unit }) => {
   return (
     <div className="CurrentWeatherValue__Wrapper">
-      <img src={`${config.weatherIconsPre}${icon}${config.weatherIconsSuf}`} />
+      {icon && (
+        <img
+          src={`${config.weatherIconsPre}${icon}${config.weatherIconsSuf}`}
+        />
+      )}
       <label>{city}</label>
       <label>
         {value} °{unit}

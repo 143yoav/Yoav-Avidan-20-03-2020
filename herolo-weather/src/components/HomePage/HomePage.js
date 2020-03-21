@@ -18,7 +18,10 @@ class HomePage extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    if (prevProps.cityKey != this.props.cityKey) {
+    if (
+      prevProps.cityKey != this.props.cityKey ||
+      prevProps.isMetric != this.props.isMetric
+    ) {
       this.fetchData(this.props.cityKey);
     }
   }
@@ -29,7 +32,7 @@ class HomePage extends Component {
 
   fetchData = key => {
     Promise.all([
-      getCurrentWeather(key),
+      getCurrentWeather(key, this.props.isMetric),
       getDailyWeather(key, this.props.isMetric)
     ]).then(result => {
       this.setState({

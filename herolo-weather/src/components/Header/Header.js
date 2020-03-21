@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import NaviLink from '../common/NaviLink/NaviLink';
 import Toggle from '../common/Toggle/Toggle';
+import { updateUnit } from '../../actions/weather';
 import './Header.scss';
 
-const Header = () => {
+const Header = props => {
   const [selected, setSelected] = useState('/');
 
   const onClick = name => event => {
@@ -13,6 +15,16 @@ const Header = () => {
   return (
     <div className="Header__Wrapper">
       <span className="Header__Title">Herolo Weather Task</span>
+      <div className="Header__Unit">
+        <Toggle
+          checkedLabel="°C"
+          uncheckedLabel="°F"
+          isChecked={props.isMetric}
+          onChange={checked => {
+            props.updateUnit(checked);
+          }}
+        />
+      </div>
       <div className="Header__Theme">
         <Toggle
           checkedLabel="Light"
@@ -39,4 +51,12 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapStateToProps = state => ({
+  isMetric: state.weather.isMetric
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateUnit: isMetric => dispatch(updateUnit(isMetric))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
