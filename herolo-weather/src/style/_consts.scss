@@ -1,6 +1,13 @@
 //fonts
 $fontFamily: 'Assistant';
 
+//Body
+$bodyBG-light: white;
+$bodyBG-dark: #4a4e4e;
+/*
+ * Implementation of themes
+ */
+
 $themes: (
   light: (
     headerBG: #f56531,
@@ -19,10 +26,6 @@ $themes: (
     dayWeatherTextColor: white
   )
 );
-
-/*
- * Implementation of themes
- */
 
 @mixin themify($themes) {
   @each $theme, $map in $themes {

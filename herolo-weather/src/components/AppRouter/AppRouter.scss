@@ -5,3 +5,11 @@
   grid-template-rows: 10vh 90vh;
   font-family: $fontFamily;
 }
+
+.theme-dark {
+  background-color: $bodyBG-dark;
+}
+
+.theme-light {
+  background-color: $bodyBG-light;
+}

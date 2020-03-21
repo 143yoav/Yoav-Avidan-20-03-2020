@@ -27,6 +27,11 @@ export default (state = weatherReducerDefaultState, action) => {
           favorites: [...state.favorites, action.fav]
         };
       }
+    case 'UPDATE_UNIT':
+      return {
+        ...state,
+        isMetric: action.isMetric
+      };
     default:
       return state;
   }
