@@ -9,8 +9,8 @@ import {
 export const getCurrentLocation = () => {
   return dispatch => {
     getPosition()
-      .then(pos => {
-        dispatch(currentLocationSuccess(pos));
+      .then(async pos => {
+        dispatch(await currentLocationSuccess(pos));
       })
       .catch(() => {
         dispatch(currentLocationError());
@@ -29,7 +29,6 @@ const currentLocationSuccess = async position => {
     const result = await Get(config.geopositionURL, {
       q: `${position.coords.latitude},${position.coords.longitude}`
     });
-
     return setCurrentCity(
       result.data.AdministrativeArea.EnglishName,
       result.data.Key

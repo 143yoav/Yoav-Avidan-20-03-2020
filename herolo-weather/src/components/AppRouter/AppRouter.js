@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import classNames from 'classnames';
 import Header from '../Header/Header';
 import HomePage from '../HomePage/HomePage';
+import { getCurrentLocation } from '../../actions/weather';
 import './AppRouter.scss';
 
 const history = createBrowserHistory();
 
-const AppRouter = () => {
+const AppRouter = props => {
+  useEffect(() => {
+    props.getCurrentLocation();
+  });
+
   return (
     <Router history={history}>
       <div className={classNames('AppRouter__Wrapper', 'theme-light')}>
@@ -22,4 +28,8 @@ const AppRouter = () => {
   );
 };
 
-export default AppRouter;
+const mapDispatchToProps = dispatch => ({
+  getCurrentLocation: () => dispatch(getCurrentLocation())
+});
+
+export default connect(null, mapDispatchToProps)(AppRouter);

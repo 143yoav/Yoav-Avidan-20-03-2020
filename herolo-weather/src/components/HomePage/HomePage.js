@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import TextSelect from '../common/TextSelect/TextSelect';
 import WeatherContainer from './WeatherContainer/WeatherContainer';
 import {
-  getCurrentLocation,
   getCurrentWeather,
   getDailyWeather,
   getAutocompleteSearch,
@@ -18,8 +17,10 @@ class HomePage extends Component {
     current: []
   };
 
-  componentWillMount() {
-    this.props.getCurrentLocation();
+  componentDidUpdate(prevProps) {
+    if (prevProps.cityKey != this.props.cityKey) {
+      this.fetchData(this.props.cityKey);
+    }
   }
 
   componentDidMount() {
@@ -48,9 +49,9 @@ class HomePage extends Component {
     }
   };
 
-  onCitySelect = city => {
-    this.props.setCurrentCity(city.city, city.key);
-    this.fetchData(city.key);
+  onCitySelect = ({ city, key }) => {
+    this.props.setCurrentCity(city, key);
+    this.fetchData(key);
   };
 
   render() {
@@ -62,7 +63,6 @@ class HomePage extends Component {
           onChange={this.onTextChanged}
           onSelect={this.onCitySelect}
         />
-
         <WeatherContainer days={this.state.days} current={this.state.current} />
       </div>
     );
@@ -75,8 +75,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentCity: (name, key) => dispatch(setCurrentCity(name, key)),
-  getCurrentLocation: () => dispatch(getCurrentLocation())
+  setCurrentCity: (name, key) => dispatch(setCurrentCity(name, key))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
