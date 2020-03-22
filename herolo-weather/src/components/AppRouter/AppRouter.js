@@ -17,7 +17,7 @@ const AppRouter = props => {
 
   return (
     <Router history={history}>
-      <div className={classNames('AppRouter__Wrapper', 'theme-dark')}>
+      <div className={classNames('AppRouter__Wrapper', `theme-${props.theme}`)}>
         <Header />
         <Switch>
           <Route path="/" component={HomePage} exact />
@@ -28,8 +28,12 @@ const AppRouter = props => {
   );
 };
 
+const mapStateToProps = state => ({
+  theme: state.theme
+});
+
 const mapDispatchToProps = dispatch => ({
   getCurrentLocation: () => dispatch(getCurrentLocation())
 });
 
-export default connect(null, mapDispatchToProps)(AppRouter);
+export default connect(mapStateToProps, mapDispatchToProps)(AppRouter);
