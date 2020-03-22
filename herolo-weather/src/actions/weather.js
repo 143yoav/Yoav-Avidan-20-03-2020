@@ -27,9 +27,11 @@ const getPosition = () => {
 
 const currentLocationSuccess = async position => {
   try {
+    const { latitude, longitude } = position.coords;
     const result = await Get(config.geopositionURL, {
-      q: `${position.coords.latitude},${position.coords.longitude}`
+      q: `${latitude},${longitude}`
     });
+
     return setCurrentCity(
       result.data.AdministrativeArea.EnglishName,
       result.data.Key
@@ -50,7 +52,7 @@ export const getCurrentWeather = async (cityKey, isMetric) => {
     const result = await Get(`${config.currentWeatherURL}${cityKey}`);
     return formatCurrentData(result.data, isMetric);
   } catch (error) {
-    toast.error('Error current weather');
+    toast.error('Error getting current weather');
   }
 };
 
@@ -59,7 +61,7 @@ export const getDailyWeather = async (cityKey, metric) => {
     const result = await Get(`${config.daysWeatherURL}${cityKey}`, { metric });
     return formatDaysData(result.data);
   } catch (error) {
-    toast.error('Error daily weather');
+    toast.error('Error getting daily weather');
   }
 };
 
@@ -68,7 +70,7 @@ export const getAutocompleteSearch = async text => {
     const result = await Get(`${config.autocompleteURL}`, { q: text });
     return formatAutocompleteData(result.data);
   } catch (error) {
-    toast.error('Error daily weather');
+    toast.error('Error getting search results');
   }
 };
 

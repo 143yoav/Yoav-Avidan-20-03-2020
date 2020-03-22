@@ -34,6 +34,6 @@ const mapDispatchToProps = dispatch => ({
   updateFavorite: (city, key) => dispatch(updateFavorite(city, key))
 });
 
-CurrentWeather.propTypes = {};
+CurrentWeather.propTypes = { text: PropTypes.string };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrentWeather);

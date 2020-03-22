@@ -21,9 +21,7 @@ const Header = props => {
           checkedLabel="°C"
           uncheckedLabel="°F"
           isChecked={props.isMetric}
-          onChange={checked => {
-            props.updateUnit(checked);
-          }}
+          onChange={checked => props.updateUnit(checked)}
         />
       </div>
       <div className="Header__Theme">
@@ -31,9 +29,7 @@ const Header = props => {
           checkedLabel="Light"
           uncheckedLabel="Dark"
           isChecked={props.isLight}
-          onChange={checked => {
-            props.updateTheme(checked);
-          }}
+          onChange={checked => props.updateTheme(checked)}
         />
       </div>
       <div className="Header__Navigation">

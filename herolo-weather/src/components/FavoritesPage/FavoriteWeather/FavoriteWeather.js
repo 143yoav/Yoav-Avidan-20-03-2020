@@ -63,7 +63,10 @@ const mapDispatchToProps = dispatch => ({
   setCurrentCity: (name, key) => dispatch(setCurrentCity(name, key))
 });
 
-FavoriteWeather.propTypes = {};
+FavoriteWeather.propTypes = {
+  cityKey: PropTypes.string,
+  city: PropTypes.string
+};
 
 export default connect(
   mapStateToProps,

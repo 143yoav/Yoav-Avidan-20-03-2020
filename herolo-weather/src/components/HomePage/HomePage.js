@@ -49,7 +49,6 @@ class HomePage extends Component {
   };
 
   onTextChanged = search => {
-    console.log(config.minSearchLength);
     if (search.length >= config.minSearchLength) {
       getAutocompleteSearch(search).then(searchResults =>
         this.setState({ searchResults })
