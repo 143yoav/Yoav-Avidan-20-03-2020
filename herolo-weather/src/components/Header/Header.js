@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import NaviLink from '../common/NaviLink/NaviLink';
 import Toggle from '../common/Toggle/Toggle';
 import { updateUnit } from '../../actions/weather';
+import { updateTheme } from '../../actions/theme';
 import './Header.scss';
 
 const Header = props => {
@@ -29,8 +30,10 @@ const Header = props => {
         <Toggle
           checkedLabel="Light"
           uncheckedLabel="Dark"
-          isChecked={true}
-          onChange={() => {}}
+          isChecked={props.isLight}
+          onChange={checked => {
+            props.updateTheme(checked);
+          }}
         />
       </div>
       <div className="Header__Navigation">
@@ -52,11 +55,13 @@ const Header = props => {
 };
 
 const mapStateToProps = state => ({
-  isMetric: state.weather.isMetric
+  isMetric: state.weather.isMetric,
+  isLight: state.theme == 'light'
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateUnit: isMetric => dispatch(updateUnit(isMetric))
+  updateUnit: isMetric => dispatch(updateUnit(isMetric)),
+  updateTheme: theme => dispatch(updateTheme(theme))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
