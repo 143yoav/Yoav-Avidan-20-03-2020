@@ -1,18 +1,16 @@
 import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import './withFetchLoading.scss';
+import './withLoading.scss';
 
-const withFetchLoading = WrappedComponent =>
+const withLoading = WrappedComponent =>
   class extends React.Component {
     render() {
       return this.props.isFetching ? (
-        <CircularProgress
-          classes={{ colorPrimary: 'withFetchLoading__Spinner' }}
-        />
+        <CircularProgress classes={{ colorPrimary: 'withLoading__Spinner' }} />
       ) : (
         <WrappedComponent {...this.props} />
       );
     }
   };
 
-export default withFetchLoading;
+export default withLoading;

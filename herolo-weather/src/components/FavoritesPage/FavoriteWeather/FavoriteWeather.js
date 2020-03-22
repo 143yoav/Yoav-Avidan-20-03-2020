@@ -25,7 +25,9 @@ class FavoriteWeather extends Component {
   fetchData = () => {
     this.setState({ isFetching: true });
     getCurrentWeather(this.props.cityKey, this.props.isMetric).then(data => {
-      this.setState({ isFetching: false, data });
+      if (data) {
+        this.setState({ isFetching: false, data });
+      }
     });
   };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import IconImg from '../../common/IconImg/IconImg';
-import withFetchLoading from '../../HOC/withFetchLoading';
+import withLoading from '../../HOC/withLoading';
 import './FavoriteWeatherData.scss';
 
 const FavoriteWeatherData = ({ cityName, value, unit, icon, text }) => {
@@ -25,4 +25,4 @@ FavoriteWeatherData.propTypes = {
   title: PropTypes.string
 };
 
-export default withFetchLoading(FavoriteWeatherData);
+export default withLoading(FavoriteWeatherData);

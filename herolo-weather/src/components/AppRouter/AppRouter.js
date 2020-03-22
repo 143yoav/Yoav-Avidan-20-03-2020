@@ -7,7 +7,9 @@ import Header from '../Header/Header';
 import HomePage from '../HomePage/HomePage';
 import FavoritesPage from '../FavoritesPage/FavoritesPage';
 import { getCurrentLocation, loadFavorites } from '../../actions/weather';
+import { toast } from 'react-toastify';
 import './AppRouter.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 const history = createBrowserHistory();
 
@@ -15,6 +17,7 @@ const AppRouter = props => {
   useEffect(() => {
     props.getCurrentLocation();
     props.loadFavorites();
+    toast.configure({ position: toast.POSITION.BOTTOM_RIGHT });
   }, []);
 
   return (
