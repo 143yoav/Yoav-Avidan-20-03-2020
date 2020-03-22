@@ -8,6 +8,7 @@ import {
   getAutocompleteSearch,
   setCurrentCity
 } from '../../actions/weather';
+import config from '../../config.json';
 import './HomePage.scss';
 
 class HomePage extends Component {
@@ -43,7 +44,8 @@ class HomePage extends Component {
   };
 
   onTextChanged = search => {
-    if (search) {
+    console.log(config.minSearchLength);
+    if (search.length >= config.minSearchLength) {
       getAutocompleteSearch(search).then(searchResults =>
         this.setState({ searchResults })
       );

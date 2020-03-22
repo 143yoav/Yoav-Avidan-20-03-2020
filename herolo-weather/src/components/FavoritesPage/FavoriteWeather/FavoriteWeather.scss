@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   @include themify($themes) {
     color: themed('favoriteTextColor');
     border-color: themed('favoriteBorder');

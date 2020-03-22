@@ -15,7 +15,7 @@ const AppRouter = props => {
   useEffect(() => {
     props.getCurrentLocation();
     props.loadFavorites();
-  });
+  }, []);
 
   return (
     <Router history={history}>

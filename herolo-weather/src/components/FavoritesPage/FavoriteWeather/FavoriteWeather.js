@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import FavoriteWeatherData from '../FavoriteWeatherData/FavoriteWeatherData';
-import { getCurrentWeather } from '../../../actions/weather';
+import { getCurrentWeather, setCurrentCity } from '../../../actions/weather';
 import './FavoriteWeather.scss';
 
 class FavoriteWeather extends Component {
@@ -28,10 +29,17 @@ class FavoriteWeather extends Component {
     });
   };
 
+  onClick = event => {
+    const { cityKey, city } = this.props;
+    this.props.setCurrentCity(city, cityKey);
+    this.props.history.push('/');
+  };
+
   render() {
     const { value, unit, icon, text } = this.state.data;
+
     return (
-      <div className="FavoriteWeather__Wrapper">
+      <div className="FavoriteWeather__Wrapper" onClick={this.onClick}>
         <FavoriteWeatherData
           isFetching={this.state.isFetching}
           cityName={this.props.city}
@@ -49,6 +57,13 @@ const mapStateToProps = state => ({
   isMetric: state.weather.isMetric
 });
 
+const mapDispatchToProps = dispatch => ({
+  setCurrentCity: (name, key) => dispatch(setCurrentCity(name, key))
+});
+
 FavoriteWeather.propTypes = {};
 
-export default connect(mapStateToProps)(FavoriteWeather);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(FavoriteWeather));
