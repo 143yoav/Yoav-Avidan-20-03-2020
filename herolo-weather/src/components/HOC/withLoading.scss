@@ -1,0 +1,8 @@
+@import '../../style/consts';
+
+.withLoading__Spinner {
+  justify-self: center;
+  @include themify($themes) {
+    color: themed('spinnerColor');
+  }
+}

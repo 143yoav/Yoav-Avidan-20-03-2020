@@ -8,13 +8,15 @@ import {
   getAutocompleteSearch,
   setCurrentCity
 } from '../../actions/weather';
+import config from '../../config.json';
 import './HomePage.scss';
 
 class HomePage extends Component {
   state = {
     searchResults: [],
     days: [],
-    current: []
+    current: [],
+    isFetching: false
   };
 
   componentDidUpdate(prevProps) {
@@ -31,19 +33,24 @@ class HomePage extends Component {
   }
 
   fetchData = key => {
+    this.setState({ isFetching: true });
     Promise.all([
       getCurrentWeather(key, this.props.isMetric),
       getDailyWeather(key, this.props.isMetric)
     ]).then(result => {
-      this.setState({
-        current: result[0],
-        days: result[1]
-      });
+      if (result[0] && result[1]) {
+        this.setState({
+          current: result[0],
+          days: result[1],
+          isFetching: false
+        });
+      }
     });
   };
 
   onTextChanged = search => {
-    if (search) {
+    console.log(config.minSearchLength);
+    if (search.length >= config.minSearchLength) {
       getAutocompleteSearch(search).then(searchResults =>
         this.setState({ searchResults })
       );
@@ -66,7 +73,12 @@ class HomePage extends Component {
           onChange={this.onTextChanged}
           onSelect={this.onCitySelect}
         />
-        <WeatherContainer days={this.state.days} current={this.state.current} />
+        <WeatherContainer
+          isFetch
+          days={this.state.days}
+          current={this.state.current}
+          isFetching={this.state.isFetching}
+        />
       </div>
     );
   }

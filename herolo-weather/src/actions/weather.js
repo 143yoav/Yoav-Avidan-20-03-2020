@@ -5,6 +5,7 @@ import {
   formatDaysData,
   formatAutocompleteData
 } from '../formatters/weatherFormmater';
+import { toast } from 'react-toastify';
 
 export const getCurrentLocation = () => {
   return dispatch => {
@@ -34,12 +35,13 @@ const currentLocationSuccess = async position => {
       result.data.Key
     );
   } catch (error) {
-    //toast
+    toast.error('Error getting current location');
     return currentLocationError();
   }
 };
 
 const currentLocationError = () => {
+  toast.error('Error getting current location');
   return setCurrentCity(config.defaultCityName, config.defaultCityKey);
 };
 
@@ -48,7 +50,7 @@ export const getCurrentWeather = async (cityKey, isMetric) => {
     const result = await Get(`${config.currentWeatherURL}${cityKey}`);
     return formatCurrentData(result.data, isMetric);
   } catch (error) {
-    //toast
+    toast.error('Error current weather');
   }
 };
 
@@ -57,7 +59,7 @@ export const getDailyWeather = async (cityKey, metric) => {
     const result = await Get(`${config.daysWeatherURL}${cityKey}`, { metric });
     return formatDaysData(result.data);
   } catch (error) {
-    //toast
+    toast.error('Error daily weather');
   }
 };
 
@@ -66,7 +68,7 @@ export const getAutocompleteSearch = async text => {
     const result = await Get(`${config.autocompleteURL}`, { q: text });
     return formatAutocompleteData(result.data);
   } catch (error) {
-    //toast
+    toast.error('Error daily weather');
   }
 };
 
@@ -83,4 +85,11 @@ export const updateFavorite = (city, key) => ({
 export const updateUnit = isMetric => ({
   type: 'UPDATE_UNIT',
   isMetric
+});
+
+export const loadFavorites = () => ({
+  type: 'LOAD_FAVORITES',
+  favorites: localStorage.getItem('favorites')
+    ? JSON.parse(localStorage.getItem('favorites'))
+    : []
 });

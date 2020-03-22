@@ -1,5 +1,5 @@
 {
-  "apiKey": "lEl0QqezTpi2QKbkVtn56JtRALrCHxfE",
+  "apiKey": "fWIn6N1anpmvThlWhxuttlDv4ftWF8df",
   "geopositionURL": "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search",
   "currentWeatherURL": "http://dataservice.accuweather.com/currentconditions/v1/",
   "daysWeatherURL": "http://dataservice.accuweather.com/forecasts/v1/daily/5day/",
@@ -7,5 +7,6 @@
   "defaultCityKey": "215791",
   "defaultCityName": "Tel Aviv",
   "weatherIconsPre": "https://developer.accuweather.com/sites/default/files/",
-  "weatherIconsSuf": "-s.png"
+  "weatherIconsSuf": "-s.png",
+  "minSearchLength": 3
 }

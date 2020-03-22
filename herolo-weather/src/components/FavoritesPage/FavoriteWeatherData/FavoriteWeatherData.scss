@@ -1,0 +1,27 @@
+@import '../../../style/consts';
+
+.FavoriteWeatherData__Wrapper {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 20% 20% 40% 20%;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  text-align: center;
+  @include themify($themes) {
+    color: themed('favoriteTextColor');
+    border-color: themed('favoriteBorder');
+  }
+}
+
+.FavoriteWeatherData__Wrapper > label:first-of-type {
+  font-size: 1.3rem;
+}
+
+.FavoriteWeatherData__Wrapper > img {
+  height: 6vw;
+}
+
+.FavoriteWeatherData__Wrapper > label {
+  cursor: pointer;
+}

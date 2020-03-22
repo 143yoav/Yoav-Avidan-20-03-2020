@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import config from '../../../../config.json';
+import IconImg from '../../../common/IconImg/IconImg';
 import './CurrentWeatherValue.scss';
 
 const CurrentWeatherValue = ({ icon, city, value, unit }) => {
   return (
     <div className="CurrentWeatherValue__Wrapper">
-      {icon && (
-        <img
-          src={`${config.weatherIconsPre}${icon}${config.weatherIconsSuf}`}
-        />
-      )}
+      {icon && <IconImg index={icon} />}
       <label>{city}</label>
       <label>
         {value} °{unit}
