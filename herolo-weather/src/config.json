@@ -1,5 +1,5 @@
 {
-  "apiKey": "lEl0QqezTpi2QKbkVtn56JtRALrCHxfE",
+  "apiKey": "GrSjgTAv4A6GfnpHjmN1YpECEptI6KpB",
   "geopositionURL": "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search",
   "currentWeatherURL": "http://dataservice.accuweather.com/currentconditions/v1/",
   "daysWeatherURL": "http://dataservice.accuweather.com/forecasts/v1/daily/5day/",

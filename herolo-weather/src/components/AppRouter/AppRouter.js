@@ -5,7 +5,8 @@ import { createBrowserHistory } from 'history';
 import classNames from 'classnames';
 import Header from '../Header/Header';
 import HomePage from '../HomePage/HomePage';
-import { getCurrentLocation } from '../../actions/weather';
+import FavoritesPage from '../FavoritesPage/FavoritesPage';
+import { getCurrentLocation, loadFavorites } from '../../actions/weather';
 import './AppRouter.scss';
 
 const history = createBrowserHistory();
@@ -13,6 +14,7 @@ const history = createBrowserHistory();
 const AppRouter = props => {
   useEffect(() => {
     props.getCurrentLocation();
+    props.loadFavorites();
   });
 
   return (
@@ -21,7 +23,7 @@ const AppRouter = props => {
         <Header />
         <Switch>
           <Route path="/" component={HomePage} exact />
-          <Route path="/favorites" component={null} exact />
+          <Route path="/favorites" component={FavoritesPage} exact />
         </Switch>
       </div>
     </Router>
@@ -33,7 +35,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getCurrentLocation: () => dispatch(getCurrentLocation())
+  getCurrentLocation: () => dispatch(getCurrentLocation()),
+  loadFavorites: () => dispatch(loadFavorites())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppRouter);

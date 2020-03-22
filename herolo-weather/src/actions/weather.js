@@ -84,3 +84,10 @@ export const updateUnit = isMetric => ({
   type: 'UPDATE_UNIT',
   isMetric
 });
+
+export const loadFavorites = () => ({
+  type: 'LOAD_FAVORITES',
+  favorites: localStorage.getItem('favorites')
+    ? JSON.parse(localStorage.getItem('favorites'))
+    : []
+});

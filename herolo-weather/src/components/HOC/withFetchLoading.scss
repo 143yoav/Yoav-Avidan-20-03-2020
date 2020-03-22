@@ -1,0 +1,7 @@
+@import '../../style/consts';
+
+.withFetchLoading__Spinner {
+  @include themify($themes) {
+    color: themed('spinnerColor');
+  }
+}

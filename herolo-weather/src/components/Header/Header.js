@@ -40,13 +40,13 @@ const Header = props => {
         <NaviLink
           to={'/'}
           value="Home"
-          isSelected={window.location.pathname == '/'}
+          isSelected={selected == '/'}
           onClick={onClick}
         />
         <NaviLink
           to={'/favorites'}
           value="Favorites"
-          isSelected={window.location.pathname == '/favorites'}
+          isSelected={selected == '/favorites'}
           onClick={onClick}
         />
       </div>

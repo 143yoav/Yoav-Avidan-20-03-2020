@@ -1,0 +1,12 @@
+@import '../../style/consts';
+
+.FavoritesPage__Wrapper {
+  height: 80vh;
+  width: 70vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10vw, 1fr));
+  grid-gap: 30px;
+  align-items: flex-start;
+  justify-self: center;
+  justify-items: center;
+}

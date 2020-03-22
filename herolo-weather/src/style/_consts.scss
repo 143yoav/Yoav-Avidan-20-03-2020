@@ -4,18 +4,26 @@ $fontFamily: 'Assistant';
 //Body
 $bodyBG-light: white;
 $bodyBG-dark: #4a4e4e;
+
+//Colors
+
+$lightMainColor: #f56531;
+
 /*
  * Implementation of themes
  */
 
 $themes: (
   light: (
-    headerBG: #f56531,
+    headerBG: $lightMainColor,
     borderColor: black,
     toggleTrackColor: black,
-    textInputBorderColor: #f56531,
-    dayWeatherBorderColor: #f56531,
-    dayWeatherTextColor: black
+    textInputBorderColor: $lightMainColor,
+    dayWeatherBorderColor: $lightMainColor,
+    dayWeatherTextColor: black,
+    spinnerColor: $lightMainColor,
+    favoriteBorder: $lightMainColor,
+    favoriteTextColor: black
   ),
   dark: (
     headerBG: #24292e,
@@ -23,7 +31,10 @@ $themes: (
     toggleTrackColor: white,
     textInputBorderColor: white,
     dayWeatherBorderColor: white,
-    dayWeatherTextColor: white
+    dayWeatherTextColor: white,
+    spinnerColor: white,
+    favoriteBorder: white,
+    favoriteTextColor: white
   )
 );
 
