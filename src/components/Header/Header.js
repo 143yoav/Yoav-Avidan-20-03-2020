@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import NaviLink from '../common/NaviLink/NaviLink';
 import Toggle from '../common/Toggle/Toggle';
 import { updateUnit } from '../../actions/weather';
@@ -7,11 +8,7 @@ import { updateTheme } from '../../actions/theme';
 import './Header.scss';
 
 const Header = props => {
-  const [selected, setSelected] = useState('/');
-
-  const onClick = name => event => {
-    setSelected(name);
-  };
+  const location = useLocation();
 
   return (
     <div className="Header__Wrapper">
@@ -33,17 +30,11 @@ const Header = props => {
         />
       </div>
       <div className="Header__Navigation">
-        <NaviLink
-          to={'/'}
-          value="Home"
-          isSelected={selected == '/'}
-          onClick={onClick}
-        />
+        <NaviLink to={'/'} value="Home" isSelected={location.pathname == '/'} />
         <NaviLink
           to={'/favorites'}
           value="Favorites"
-          isSelected={selected == '/favorites'}
-          onClick={onClick}
+          isSelected={location.pathname == '/favorites'}
         />
       </div>
     </div>
